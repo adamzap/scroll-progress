@@ -1,0 +1,36 @@
+<html>
+<head>
+<script>
+
+chrome.browserAction.onClicked.addListener(function(tab) {
+    var scrollPercentage = getScrollPercentage();
+
+    var imageData = draw(scrollPercentage);
+
+    chrome.browserAction.setIcon({imageData: imageData});
+});
+
+function getScrollPercentage() {
+    // TODO: Placeholder
+    return Math.round(Math.random() * 100);
+}
+
+function draw(scrollPercentage) {
+    var canvas = document.getElementById('canvas');
+    var context = canvas.getContext('2d');
+
+    context.clearRect(0, 0, 19, 19);
+
+    context.font = "16px Arial";
+    context.fillStyle = "Black";
+    context.fillText(scrollPercentage, 0, 15);
+
+    return context.getImageData(0, 0, 19, 19);
+}
+
+</script>
+</head>
+<body>
+<canvas id="canvas" width="19" height="19"></canvas>
+</body>
+</html>
