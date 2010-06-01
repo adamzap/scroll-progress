@@ -7,6 +7,10 @@ function report_scrolling (e) {
         percentage = '0' + percentage;
     }
 
+    if (percentage == '00' || percentage == '100') {
+        percentage = '----';
+    }
+
     chrome.extension.sendRequest({percentage: percentage});
 }
 
