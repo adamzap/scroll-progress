@@ -9,6 +9,8 @@ chrome.browserAction.onClicked.addListener(function(tab) {
         chrome.tabs.executeScript(null, {file: "report_scrolling_off.js"});
 
         on = false;
+
+        chrome.browserAction.setIcon({path: "icon.png"});
     } else {
         chrome.tabs.executeScript(null, {file: "report_scrolling_on.js"});
 
