@@ -2,20 +2,29 @@
 <head>
 <script>
 
-chrome.browserAction.onClicked.addListener(function(tab) {
-    var scrollPercentage = getScrollPercentage();
+var on = false;
 
-    var imageData = draw(scrollPercentage);
+chrome.browserAction.onClicked.addListener(function(tab) {
+    if (on) {
+        chrome.tabs.executeScript(null, {file: "report_scrolling_off.js"});
+
+        on = false;
+    } else {
+        chrome.tabs.executeScript(null, {file: "report_scrolling_on.js"});
+
+        on = true;
+    }
+});
+
+chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
+    var scrollPercentage = request.percentage;
+
+    var imageData = draw_button(scrollPercentage);
 
     chrome.browserAction.setIcon({imageData: imageData});
 });
 
-function getScrollPercentage() {
-    // TODO: Placeholder
-    return Math.round(Math.random() * 100);
-}
-
-function draw(scrollPercentage) {
+function draw_button(scrollPercentage) {
     var canvas = document.getElementById('canvas');
     var context = canvas.getContext('2d');
 

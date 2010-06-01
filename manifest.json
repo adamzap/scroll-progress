@@ -1,9 +1,15 @@
 {
   "name": "Scroll Progress",
   "version": "1.0",
-  "permissions": ["tabs"],
+  "permissions": ["tabs", "http://*/*"],
   "background_page": "background.html",
   "description": "Displays the percantage of the page you have past",
+  "content_scripts": [
+    {
+      "matches": ["http://*/*"],
+      "js": ["report_scrolling_on.js", "report_scrolling_off.js"]
+    }
+  ],
   "browser_action": {
     "default_icon": "icon.png"
   }
