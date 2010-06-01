@@ -1,5 +1,11 @@
 function report_scrolling (e) {
-    var percentage = Math.round(Math.random() * 100);
+    var area = document.documentElement.scrollHeight - window.innerHeight;
+
+    var percentage = document.body.scrollTop / area * 100;
+
+    if (percentage < 10) {
+        percentage = '0' + percentage;
+    }
 
     chrome.extension.sendRequest({percentage: percentage});
 }
