@@ -4,19 +4,27 @@
 
 var on = false;
 
+function turnOn(tabId) {
+    chrome.tabs.executeScript(tabId, {file: "report_scrolling_on.js"});
+
+    on = true;
+
+    chrome.tabs.sendRequest(tabId, {});
+}
+
+function turnOff(tabId) {
+    chrome.tabs.executeScript(tabId, {file: "report_scrolling_off.js"});
+
+    on = false;
+
+    chrome.browserAction.setIcon({path: "icon.png"});
+}
+
 chrome.browserAction.onClicked.addListener(function(tab) {
     if (on) {
-        chrome.tabs.executeScript(null, {file: "report_scrolling_off.js"});
-
-        on = false;
-
-        chrome.browserAction.setIcon({path: "icon.png"});
+        turnOff(tab.id);
     } else {
-        chrome.tabs.executeScript(null, {file: "report_scrolling_on.js"});
-
-        on = true;
-
-        chrome.tabs.sendRequest(tab.id, {});
+        turnOn(tab.id);
     }
 });
 
