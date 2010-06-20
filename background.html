@@ -28,6 +28,10 @@ chrome.browserAction.onClicked.addListener(function(tab) {
     }
 });
 
+chrome.tabs.onRemoved.addListener(function(tabId) {
+    turnOff(tabId);
+});
+
 chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
     var scrollPercentage = request.percentage;
 
