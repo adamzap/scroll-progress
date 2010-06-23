@@ -9,6 +9,13 @@ have scrolled down next to the address bar. It updates as you scroll.
 
 I suppose it's useful for reading very long articles.
 
+Screenshots
+-----------
+
+![Extension Off](http://adamzap.com/random/images/scroll_progress_1.png)
+
+![Extension On](http://adamzap.com/random/images/scroll_progress_2.png)
+
 Note
 ----
 
